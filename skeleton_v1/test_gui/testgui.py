@@ -1,6 +1,10 @@
 #import module
 from tkinter import *
 
+from PIL Image, ImageTk
+
+
+
 #create root window
 root  = Tk()
 
@@ -24,7 +28,10 @@ btn = Button(root, text= "click me",
              fg  ="red" , command=clicked)
 
 btn.grid(column=1, row=0)
+img = Image.open(/images/daniel-farrelly-grace.png).resize((WINDOW_WIDTH, 80))
+_banner_img = ImageTk.photoImage(img)
+tk.lable(header, image=_banner_img, bg=HEADER_COLOUR).pack
+Root.mainloop()
 
-#all widgets will ne here
-#execute Tkinter
-root.mainloop()
+
+
