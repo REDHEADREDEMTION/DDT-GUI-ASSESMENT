@@ -47,13 +47,13 @@ entry3.grid(row=2, column=1)
 
 
 # create/add an image
-WINDOW_WIDTH = 800
+WINDOW_WIDTH = 50
 HEADER_COLOUR = "#ffffff"
 header = tk.Frame(root)
 header.grid()
 
 
-img = Image.open("skeleton_v1/banner.jpg").resize((WINDOW_WIDTH, 800))
+img = Image.open("skeleton_v1/banner.jpg").resize((WINDOW_WIDTH, 50))
 _banner_img = ImageTk.PhotoImage(img)
 label = tk.Label(header, image=_banner_img, bg=HEADER_COLOUR)
 label.image = _banner_img  # keep reference
