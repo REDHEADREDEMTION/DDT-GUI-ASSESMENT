@@ -30,14 +30,28 @@ searchframe.grid_rowconfigure((0,1,2,3,4,5,6,7,8,9), weight=1)
 searchframe.grid_propagate(False)
 
 #add an image to the search frame as a logo
+#TO turn the image into a button and allow it to go to the home page I used chatgpt
+def go_home():
+    subprocess.Popen([sys.executable, "RealProgect/SkeletonV1/Gui.py.py"])
+    root.destroy()
+
+
 img = Image.open("RealProgect/SkeletonV1/Images/Logo.png")
 img = img.resize((40, 40), Image.LANCZOS)
-_banner_img = ImageTk.PhotoImage(img)
-label = tk.Label(searchframe, image=_banner_img)
-label.image = _banner_img  # keep reference
-label.grid(column=0, row=0, sticky="nesw" )
+logo_img = ImageTk.PhotoImage(img)
 
+home_button = tk.Button(
+    searchframe,
+    image=logo_img,
+    command=go_home,
+    borderwidth=0,
+    relief="flat",
+    highlightthickness=0,
+    cursor="hand2"
+)
 
+home_button.image = logo_img
+home_button.grid(column=0, row=0, sticky="nesw")
 
 
 
@@ -47,7 +61,7 @@ house = tk.StringVar(value="Choose job")
 house_menu = ttk.Combobox(
     searchframe,
     textvariable=house,
-    values=["Engineer", "Physicist", "electrical engineer", "cook", "macdonalds worker"],
+    values=["Engineer", "physicest", "electrical engineer", "cook", "macdonalds worker"],
 )
 house_menu.grid(column=2, row=1, columnspan=4, rowspan=2, sticky="nesw")
 
@@ -61,7 +75,7 @@ def job_selected(event):
         subprocess.Popen(["python", "RealProgect/SkeletonV1/Jobs/Engineering.py"])
         root.destroy()
 
-    elif selected_job == "Physicist":
+    elif selected_job == "physicest":
         subprocess.Popen(["python", "RealProgect/SkeletonV1/Jobs/physicest.py"])
         root.destroy()
 
@@ -80,39 +94,13 @@ def job_selected(event):
 
 house_menu.bind("<<ComboboxSelected>>", job_selected)
 
-#this is a frame for the information box of my website that will keep the information safe.
-titleframe = tk.Frame(root,bg="orange", relief=tk.RIDGE)
-titleframe.grid(column=1, row=3, sticky="nesw", rowspan=5, columnspan=8)
-titleframe.grid_columnconfigure((0,1,2,3,4,5,6,7,8,9,10), weight=1)
-titleframe.grid_rowconfigure((0,1,2,3,4,5,6,7,8,9,10), weight=1)
-
-
-#I am creating the title of the main page.
-tk.Label(titleframe, text="Find your career").grid(row=1, column=4, columnspan=3, sticky="nesw")
-
-#creating a information frame to fo into the titleframe so that I can asteticaly design the layout
-information = tk.Frame(titleframe, bg="red")
-information.grid(column=1, row=3, columnspan=9, rowspan=7, sticky="nesw")
-information.grid_columnconfigure((0,1,2,3,4,5,6,7,8,9,10), weight=1)
-information.grid_rowconfigure((0,1,2,3,4,5,6,7,8,9), weight=1)
-for ix in range(11):
-    for iy in range(11):
-        tk.Frame(information, bd=3, relief=tk.RIDGE).grid(sticky="nesw",column=ix, row=iy)
-
-#below is all the texts and text boxes that will have the information.
-tk.Label(information, text= """This is a app that allows you to research 
-your jobs for the future efectivly""").grid(row=2, column=0, rowspan=6, columnspan=3, sticky="nesw")
-
-tk.Label(information, text= """if your ever confused or strugiling your
-way through life then just open
-up Loan and search you way""").grid(row=2, column=4, rowspan=6, columnspan=3, sticky="nesw")
-
-tk.Label(information, text= """We are here to help and serve 
-you and to accomidat your needs.""").grid(row=2, column=8, rowspan=6, columnspan=3, sticky="nesw")
+titleframe = tk.Frame(root)
+titleframe.grid(column=3, row=1, columnspan=4, sticky="nesw")
+titleframe.grid_columnconfigure((0), weight=1)
+titleframe.grid_rowconfigure((0,1,2,3), weight=1)
+tk.Label(titleframe, text="Cook", font=("Ariel", 60, "underline")).grid(column=0, row=0, rowspan=3,)
 
 
 
 
 root.mainloop()
-
-

@@ -3,6 +3,7 @@ from tkinter import *
 import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
+from datetime import datetime
 
 import subprocess
 import sys
@@ -47,7 +48,7 @@ house = tk.StringVar(value="Choose job")
 house_menu = ttk.Combobox(
     searchframe,
     textvariable=house,
-    values=["Engineer", "Physicist", "electrical engineer", "cook", "macdonalds worker"],
+    values=["Engineer", "Physicist"],
 )
 house_menu.grid(column=2, row=1, columnspan=4, rowspan=2, sticky="nesw")
 
@@ -58,24 +59,14 @@ def job_selected(event):
     selected_job = house.get()
 
     if selected_job == "Engineer":
-        subprocess.Popen(["python", "RealProgect/SkeletonV1/Jobs/Engineering.py"])
+        subprocess.Popen(["python", "RealProgect/SkeletonV3/Jobs/Engineering.py"])
         root.destroy()
 
     elif selected_job == "Physicist":
-        subprocess.Popen(["python", "RealProgect/SkeletonV1/Jobs/physicest.py"])
+        subprocess.Popen(["python", "RealProgect/SkeletonV3/Jobs/Physicist.py"])
         root.destroy()
 
-    elif selected_job == "electrical engineer":
-        subprocess.Popen(["python", "RealProgect/SkeletonV1/Jobs/electrical_engineer.py"])
-        root.destroy()
 
-    elif selected_job == "cook":
-        subprocess.Popen(["python", "RealProgect/SkeletonV1/Jobs/cook.py"])
-        root.destroy()
-
-    elif selected_job == "macdonalds worker":
-        subprocess.Popen(["python", "RealProgect/SkeletonV1/Jobs/macdonalds_worker.py"])
-        root.destroy()
         
 
 house_menu.bind("<<ComboboxSelected>>", job_selected)
